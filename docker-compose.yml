@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+
+    env_file:
+      - ./env/database.env
+
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+    command: python3 manage.py runserver 0.0.0.0:80
+
+    depends_on:
+      - database
+
+
+  database:
+    image: postgres:12.9
+    env_file:
+      - ./env/database.env
+    volumes:
+      - ./data:/var/lib/postgresql/data/
+
+
+  redis:
+    image: redis:latest
