@@ -214,6 +214,6 @@ cython_debug/
 
 #custom files
 
-./push
-./push.sh
+push
+push.sh
 
